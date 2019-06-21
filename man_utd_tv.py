@@ -31,7 +31,12 @@ def arrange(frows):
 
         if date is not None: current_date = date
         if match is None: continue
-        matches.append({ "date" : current_date, "fixture" : match, "comp" : comp, "time" : time, "channels" : channels })
+        matches.append( { 
+            "date" : str(current_date, 'utf-8'),
+            "fixture" : str(match, 'utf-8'), 
+            "comp" : str(comp, 'utf-8'), 
+            "time" : str(time, 'utf-8'), 
+            "channels" : str(channels, 'utf-8') })
 
     return matches
 
@@ -45,8 +50,7 @@ def get_fixtures(url):
 
 
 def table_view(text):
-    print "{:<30}|{:<48}|{:<48}|{:<20}|{:<40}".format(
-            text['date'], text['fixture'], text['comp'], text['time'], text['channels'])
+    print("{date:<30}|{fixture:<48}|{comp:<48}|{time:<20}|{channels:<40}".format_map(text))
 
 
 if __name__ == '__main__':
